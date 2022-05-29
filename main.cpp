@@ -48,8 +48,13 @@ int main(int, char**) {
     sudoku.bind_rule(&r_3);
     sudoku.bind_rule(&r_4);
 
-    sudoku.solve();
 
+    try {
+        sudoku.solve();
+    } catch (char const *e) {
+        std::cout << "Impossible sudoku - " << e << std::endl;
+        return -1;
+    };
     auto solved = sudoku.get();
 
     for (int col=0;col<9;col++) {
